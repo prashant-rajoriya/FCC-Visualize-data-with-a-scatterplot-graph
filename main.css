@@ -1,0 +1,90 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+.main {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  background-color: #516677a9;
+  align-items: center;
+  justify-content: center;
+  background-size: 64px 128px;
+}
+
+.main .container {
+  width: 1000px;
+  height: 660px;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  background-color: #fff;
+  position: relative;
+  padding: 20px;
+}
+
+@media (min-width:1000px) {
+  .main .container {
+    box-shadow: 2px 2px 20px;
+  }
+}
+
+.main .container #title {
+  text-align: center;
+  font-size: 2.5em;
+  margin-top: 20px;
+}
+
+.main .container .holder {
+  position: absolute;
+  top: 6em;
+}
+
+#x-axis path {
+  stroke: black;
+  stroke-width: 1;
+  fill: none;
+}
+
+#y-axis path {
+  stroke: black;
+  stroke-width: 1;
+  fill: none;
+}
+
+.tooltip {
+  width: 350px;
+  height: 100px;
+  position: absolute;
+  background-color: lightskyblue;
+  border: 5px solid rebeccapurple;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 10px;
+  font: 12px;
+  text-align: left;
+  box-shadow: 1px 1px 10px;
+  border-radius: 5px;
+  pointer-events: none;
+}
+
+#legend {
+  display: flex;
+  flex-direction: column;
+}
+
+#legend .box {
+  display: flex;
+  margin: 2px;
+  padding: 2px;
+}
+
+#legend .box .text {
+  text-align: right;
+  margin-right: 2px;
+  order: -1;
+}
