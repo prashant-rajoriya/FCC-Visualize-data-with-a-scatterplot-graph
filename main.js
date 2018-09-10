@@ -4,6 +4,7 @@ d3.json('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/mas
   let width = 900;
   let height = 500;
   let padding = 60;
+  var timeParse = d3.timeParse("%M:%S");
   let legends = [
     {
       'text' : "Riders with doping allegations",
@@ -14,15 +15,14 @@ d3.json('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/mas
       'color' : 'green'
     }
   ];
+  
   data.map( d => {
-    d.Place = +d.Place;
-    let temp = d['Time'].split(':');
-    d['Time'] = new Date(Date.UTC(1970, 0, 1, 0, temp[0], temp[1]));
+    d['Time'] = timeParse(d.Time);
   });
   
   let svg = d3.select('svg')
               .attr('width', width+100)
-              .attr('height', height + 60);
+              .attr('height', height + padding);
 
   let xScale = d3.scaleLinear()
                   .domain([d3.min(data, d => d['Year']-1), d3.max(data, d => d['Year'] +1)])
@@ -125,6 +125,8 @@ d3.json('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/mas
       .attr("x", width + padding)  
       .attr("width", 18)
       .attr("height", 18)
+      .style('stroke', 'black')
+      .style('stroke-width', 1)
       .style("fill", d => d.color);
   
     legend.append("text")
