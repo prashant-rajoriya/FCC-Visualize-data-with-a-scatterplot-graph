@@ -4,6 +4,16 @@ d3.json('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/mas
   let width = 900;
   let height = 500;
   let padding = 60;
+  let legends = [
+    {
+      'text' : "Riders with doping allegations",
+      'color' : 'blue'
+    },
+    {
+      'text' : "No doping allegations",
+      'color' : 'green'
+    }
+  ];
   data.map( d => {
     d.Place = +d.Place;
     let temp = d['Time'].split(':');
@@ -100,5 +110,28 @@ d3.json('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/mas
           .duration(200)
           .style('opacity', 0);
       })
+  
+  var legend = svg.selectAll(".legend")
+                  .data(legends)
+                  .enter()
+                  .append("g")
+                  .attr("class", "legend")
+                  .attr("id", "legend")
+                  .attr("transform", function(d, i) {
+                    return "translate(0," + (height/10 - i * 20) + ")";
+                  });
+  
+    legend.append("rect")
+      .attr("x", width + padding)  
+      .attr("width", 18)
+      .attr("height", 18)
+      .style("fill", d => d.color);
+  
+    legend.append("text")
+      .attr("x", width+ padding -10)
+      .attr("y", 9)
+      .attr("dy", ".35em")
+      .style("text-anchor", "end")
+      .text(d => d.text);
   
 }); 
